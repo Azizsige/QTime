@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  .transition-all {
+    transition-duration: 0.4s !important;
+  }
+
+  .hero-input {
+    background-color: #475069 !important;
+  }
+
+  main {
+    background-image: url("./../img/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .owl-theme .owl-nav,
+  .owl-theme .owl-dots {
+    display: none !important;
+  }
+
+  button.inline-block {
+    color: white !important;
+  }
+}
