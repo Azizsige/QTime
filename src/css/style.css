@@ -17,8 +17,8 @@
     background-repeat: no-repeat;
   }
 
-  .owl-theme .owl-nav,
-  .owl-theme .owl-dots {
+  .owl-jumbo .owl-nav,
+  .owl-jumbo .owl-dots {
     display: none !important;
   }
 

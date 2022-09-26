@@ -4,24 +4,45 @@ import "owl.carousel/dist/owl.carousel.min.js";
 import "owl.carousel";
 import $ from "jquery";
 
-$(".owl-carousel").owlCarousel({
-  loop: true,
-  margin: 10,
-  nav: true,
-  autoplay: true,
-  autoplayTimeout: 2000,
-  autoplayHoverPause: false,
-  responsive: {
-    0: {
-      items: 1,
+$(document).ready(function () {
+  $(".owl-jumbo").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 1,
+      },
+      1000: {
+        items: 1,
+      },
     },
-    600: {
-      items: 1,
+  });
+  $(".owl-popular").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
     },
-    1000: {
-      items: 1,
-    },
-  },
+  });
 });
 
 const tabsBtn = document.querySelectorAll(".tabs-btn");
