@@ -25,4 +25,8 @@
   button.inline-block {
     color: white !important;
   }
+
+  .owl-carousel.owl-loaded {
+    display: flex !important;
+  }
 }

@@ -53,6 +53,25 @@ $(document).ready(function () {
       },
     },
   });
+  $(".owl-air").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
+    },
+  });
 });
 
 const tabsBtn = document.querySelectorAll(".tabs-btn");
@@ -75,9 +94,14 @@ async function getTrending() {
   renderTrending(datas.results);
 }
 
+function getMoviesNow() {
+  return fetch(API_MOVIES_NOW)
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
-  console.log(data);
   data.length = 8;
   const random = Math.random() * (data.length - 1) + 1;
   await data.forEach((datas) => {
@@ -85,7 +109,7 @@ async function renderTrending(data) {
       // console.log(datas.original_name);
       trending.innerHTML += `
       <div
-      class="movie w-[9rem] h-[10rem] sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-16 xl:mt-12 2xl:mt-20"
+      class="movie w-[9rem] shadow-2xl h-[10rem] sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-16 xl:mt-12 2xl:mt-20"
     >
       <div class="movies bg-cardMovies rounded-xl">
         <div class="movies-image p-2">
@@ -96,7 +120,7 @@ async function renderTrending(data) {
           />
         </div>
         <div
-          class="movies-title text-movieTitle p-3 text-[12px] xl:text-[16px]"
+          class="movies-title text-movieTitle p-[1.75rem] text-[12px] xl:text-[20px]"
         >
           <h6>${datas.original_name}</h6>
         </div>
@@ -107,7 +131,7 @@ async function renderTrending(data) {
       // console.log(datas.original_title);
       trending.innerHTML += `
       <div
-      class="movie w-[9rem] h-[10rem] sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-16 xl:mt-12 2xl:mt-20"
+      class="movie w-[9rem] shadow-2xl h-[10rem] sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-16 xl:mt-12 2xl:mt-20"
     >
       <div class="movies bg-cardMovies rounded-xl">
         <div class="movies-image p-2">
@@ -118,7 +142,7 @@ async function renderTrending(data) {
       />
         </div>
         <div
-          class="movies-title text-movieTitle p-3 text-[12px] xl:text-[16px]"
+          class="movies-title text-movieTitle p-[1.75rem] text-[12px] xl:text-[20px]"
         >
           <h6>${datas.original_title}</h6>
         </div>
@@ -128,5 +152,58 @@ async function renderTrending(data) {
     }
   });
 }
+function renderMoviesNow() {
+  const renderMoviesNow = getMoviesNow();
+  const moviesNow = document.getElementById("popular-carousel");
+  console.log(moviesNow);
+  $(".owl-now").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
+    },
+  });
+  renderMoviesNow.then(function (datas) {
+    datas.length = 4;
+    datas.forEach((data) => {
+      console.log(datas);
+      moviesNow.innerHTML += `
+      <div
+      class="movie item w-[8rem] h-full xl:w-[12rem] 2xl:w-[17vw] sm:w-[11rem] xl:h-full mt-0"
+    >
+      <div class="movies bg-cardMovies rounded-xl">
+        <div class="movies-image p-2">
+          <img
+            src="./img/she-poster.jpg"
+            alt=""
+            class="rounded-xl"
+          />
+        </div>
+        <div
+          class="movies-title text-movieTitle p-3 text-[12px] xl:text-[16px]"
+        >
+          <h6>She-Hulk: Attorney at Law</h6>
+        </div>
+      </div>
+    </div>
+      `;
+    });
+  });
+  // $(".owl-now").owlCarousel();
+  // $(".owl-carousel").trigger("destroy.owl.carousel");
+}
 
 getTrending();
+renderMoviesNow();
