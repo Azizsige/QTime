@@ -132,10 +132,10 @@ function getMoviesOnAir() {
 
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
-  data.length = 8;
   // console.log(data);
-  const random = Math.random() * (data.length - 1) + 1;
-  await data.forEach((datas) => {
+  const random = Math.floor(Math.random() * (data.length - 1) + 1);
+  console.log(random);
+  await data.slice(random, random + 8).forEach((datas) => {
     if (datas.original_title == undefined) {
       // console.log(datas.original_name);
       trending.innerHTML += `
@@ -189,8 +189,8 @@ function renderMoviesNow() {
   const imageNow = document.querySelectorAll(".movies-image__now");
   const imageNowTitle = document.querySelectorAll(".movies-now__title");
   renderMoviesNow.then(function (datas) {
-    datas.length = 4;
-    datas.forEach((data, index) => {
+    const random = Math.floor(Math.random() * (datas.length - 1) + 1);
+    datas.slice(random, random + 4).forEach((data, index) => {
       imageNow[index].src = `${API_IMAGE}${data.poster_path}`;
       imageNowTitle[index].innerText = `${data.original_title}`;
     });
@@ -202,8 +202,8 @@ function renderMoviesPopular() {
   const imagePopular = document.querySelectorAll(".movies-image__popular");
   const imagePopularTitle = document.querySelectorAll(".movies-popular__title");
   renderMoviesPopular.then(function (datas) {
-    datas.length = 4;
-    datas.forEach((data, index) => {
+    const random = Math.floor(Math.random() * (datas.length - 1) + 1);
+    datas.slice(random, random + 4).forEach((data, index) => {
       imagePopular[index].src = `${API_IMAGE}${data.poster_path}`;
       imagePopularTitle[index].innerText = `${data.original_title}`;
       // console.log(data);
@@ -215,8 +215,8 @@ function renderMoviesOnAir() {
   const imageOnAir = document.querySelectorAll(".movies-image__OnAir");
   const imageOnAirTitle = document.querySelectorAll(".movies-OnAir__title");
   renderMoviesOnAir.then(function (datas) {
-    datas.length = 4;
-    datas.forEach((data, index) => {
+    const random = Math.floor(Math.random() * (datas.length - 1) + 1);
+    datas.slice(random, random + 4).forEach((data, index) => {
       imageOnAir[index].src = `${API_IMAGE}${data.poster_path}`;
       imageOnAirTitle[index].innerText = `${data.original_title}`;
       console.log(data);
