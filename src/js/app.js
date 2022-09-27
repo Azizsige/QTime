@@ -140,7 +140,7 @@ async function renderTrending(data) {
       // console.log(datas.original_name);
       trending.innerHTML += `
       <div
-      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-20 xl:mt-12 2xl:mt-20"
+      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div class="movies bg-cardMovies rounded-xl">
         <div class="movies-image p-2">
@@ -162,7 +162,7 @@ async function renderTrending(data) {
       // console.log(datas.original_title);
       trending.innerHTML += `
       <div
-      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-20 xl:mt-12 2xl:mt-20"
+      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div class="movies bg-cardMovies rounded-xl">
         <div class="movies-image p-2">
