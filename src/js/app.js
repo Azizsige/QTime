@@ -34,6 +34,25 @@ $(document).ready(function () {
       },
     },
   });
+  $(".owl-now").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
+    },
+  });
   $(".owl-popular").owlCarousel({
     loop: true,
     margin: 10,
@@ -82,7 +101,6 @@ tabsBtn.forEach((element) => {
       tab.classList.remove("bg-[#7B6EF6]", "text-[#8E95A9]")
     );
 
-    // alert("Yeyy");
     this.classList.add("bg-[#7B6EF6]", "text-white");
     this.classList.remove("text-[#8E95A9]");
   });
@@ -100,9 +118,22 @@ function getMoviesNow() {
     .then((data) => data.results);
 }
 
+function getMoviesPopular() {
+  return fetch(API_MOVIES_POPULAR)
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function getMoviesOnAir() {
+  return fetch(API_MOVIES_UPCOMING)
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
   data.length = 8;
+  // console.log(data);
   const random = Math.random() * (data.length - 1) + 1;
   await data.forEach((datas) => {
     if (datas.original_title == undefined) {
@@ -152,58 +183,48 @@ async function renderTrending(data) {
     }
   });
 }
+
 function renderMoviesNow() {
   const renderMoviesNow = getMoviesNow();
-  const moviesNow = document.getElementById("popular-carousel");
-  console.log(moviesNow);
-  $(".owl-now").owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: true,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    autoplayHoverPause: false,
-    responsive: {
-      0: {
-        items: 2,
-      },
-      600: {
-        items: 3,
-      },
-      1000: {
-        items: 4,
-      },
-    },
-  });
+  const imageNow = document.querySelectorAll(".movies-image__now");
+  const imageNowTitle = document.querySelectorAll(".movies-now__title");
   renderMoviesNow.then(function (datas) {
     datas.length = 4;
-    datas.forEach((data) => {
-      console.log(datas);
-      moviesNow.innerHTML += `
-      <div
-      class="movie item w-[8rem] h-full xl:w-[12rem] 2xl:w-[17vw] sm:w-[11rem] xl:h-full mt-0"
-    >
-      <div class="movies bg-cardMovies rounded-xl">
-        <div class="movies-image p-2">
-          <img
-            src="./img/she-poster.jpg"
-            alt=""
-            class="rounded-xl"
-          />
-        </div>
-        <div
-          class="movies-title text-movieTitle p-3 text-[12px] xl:text-[16px]"
-        >
-          <h6>She-Hulk: Attorney at Law</h6>
-        </div>
-      </div>
-    </div>
-      `;
+    datas.forEach((data, index) => {
+      imageNow[index].src = `${API_IMAGE}${data.poster_path}`;
+      imageNowTitle[index].innerText = `${data.original_title}`;
     });
   });
-  // $(".owl-now").owlCarousel();
-  // $(".owl-carousel").trigger("destroy.owl.carousel");
+}
+
+function renderMoviesPopular() {
+  const renderMoviesPopular = getMoviesPopular();
+  const imagePopular = document.querySelectorAll(".movies-image__popular");
+  const imagePopularTitle = document.querySelectorAll(".movies-popular__title");
+  renderMoviesPopular.then(function (datas) {
+    datas.length = 4;
+    datas.forEach((data, index) => {
+      imagePopular[index].src = `${API_IMAGE}${data.poster_path}`;
+      imagePopularTitle[index].innerText = `${data.original_title}`;
+      // console.log(data);
+    });
+  });
+}
+function renderMoviesOnAir() {
+  const renderMoviesOnAir = getMoviesOnAir();
+  const imageOnAir = document.querySelectorAll(".movies-image__OnAir");
+  const imageOnAirTitle = document.querySelectorAll(".movies-OnAir__title");
+  renderMoviesOnAir.then(function (datas) {
+    datas.length = 4;
+    datas.forEach((data, index) => {
+      imageOnAir[index].src = `${API_IMAGE}${data.poster_path}`;
+      imageOnAirTitle[index].innerText = `${data.original_title}`;
+      console.log(data);
+    });
+  });
 }
 
 getTrending();
 renderMoviesNow();
+renderMoviesPopular();
+renderMoviesOnAir();
