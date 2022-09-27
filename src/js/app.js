@@ -219,12 +219,80 @@ function renderMoviesOnAir() {
     datas.slice(random, random + 4).forEach((data, index) => {
       imageOnAir[index].src = `${API_IMAGE}${data.poster_path}`;
       imageOnAirTitle[index].innerText = `${data.original_title}`;
-      console.log(data);
+      // console.log(data);
     });
   });
 }
+
+// TV
+
+function getTvPopular() {
+  return fetch(API_TV_POPULAR)
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function renderTvPopular() {
+  const renderTvPopular = getTvPopular();
+  const imageTvPop = document.querySelectorAll(".movies-image__TvPop");
+  const imageTvPopTitle = document.querySelectorAll(".movies-TvPop__title");
+  renderTvPopular.then(function (datas) {
+    console.log(datas);
+    const random = Math.floor(Math.random() * (datas.length - 1) + 1);
+    datas.slice(random, random + 4).forEach((data, index) => {
+      imageTvPop[index].src = `${API_IMAGE}${data.poster_path}`;
+      imageTvPopTitle[index].innerText = `${data.original_name}`;
+    });
+  });
+}
+
+function getTvAiring() {
+  return fetch(API_TV_AIRING)
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function renderTvAiring() {
+  const renderTvAiring = getTvAiring();
+  const imageTvAiring = document.querySelectorAll(".movies-image__TvAiring");
+  const imageTvAiringTitle = document.querySelectorAll(
+    ".movies-TvAiring__title"
+  );
+  renderTvAiring.then(function (datas) {
+    const random = Math.floor(Math.random() * (datas.length - 1) + 1);
+    datas.slice(random, random + 4).forEach((data, index) => {
+      imageTvAiring[index].src = `${API_IMAGE}${data.poster_path}`;
+      imageTvAiringTitle[index].innerText = `${data.original_name}`;
+    });
+  });
+}
+
+function getTvTop() {
+  return fetch(API_TV_TOP)
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function renderTvTop() {
+  const renderTvTop = getTvTop();
+  const imageTvTop = document.querySelectorAll(".movies-image__TvTop");
+  const imageTvTopTitle = document.querySelectorAll(".movies-TvTop__title");
+  renderTvTop.then(function (datas) {
+    console.log(datas);
+    const random = Math.floor(Math.random() * (datas.length - 1) + 1);
+    datas.slice(random, random + 4).forEach((data, index) => {
+      imageTvTop[index].src = `${API_IMAGE}${data.poster_path}`;
+      imageTvTopTitle[index].innerText = `${data.original_name}`;
+    });
+  });
+}
+
+// TV
 
 getTrending();
 renderMoviesNow();
 renderMoviesPopular();
 renderMoviesOnAir();
+renderTvPopular();
+renderTvAiring();
+renderTvTop();
