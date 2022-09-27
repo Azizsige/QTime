@@ -1,6 +1,5 @@
 const API_IMAGE = "https://image.tmdb.org/t/p/w500";
 const API_KEY = "0407909af3830d4ca4556ca68266735f";
-const API_TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
 const API_MOVIES_NOW = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
 const API_MOVIES_POPULAR = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 const API_MOVIES_UPCOMING = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
@@ -107,6 +106,14 @@ tabsBtn.forEach((element) => {
 });
 
 async function getTrending() {
+  let all_type = document.getElementById("all_type");
+  let API_TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+  const media_type = ["all", "movie", "tv"];
+  let randomMedia = Math.floor(Math.random() * 3);
+  API_TRENDING = `https://api.themoviedb.org/3/trending/${media_type[randomMedia]}/day?api_key=${API_KEY}`;
+  console.log(API_TRENDING);
+  all_type.innerHTML = media_type[randomMedia].toLocaleUpperCase();
+
   const url = await fetch(API_TRENDING);
   const datas = await url.json();
   renderTrending(datas.results);
@@ -132,14 +139,12 @@ function getMoviesOnAir() {
 
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
-  // console.log(data);
+
   const random = Math.floor(Math.random() * (data.length - 1) + 1);
-  console.log(random);
   await data.slice(random, random + 8).forEach((datas) => {
     if (datas.original_title == undefined) {
-      // console.log(datas.original_name);
       trending.innerHTML += `
-      <div
+      <div id=${datas.id}
       class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div class="movies bg-cardMovies rounded-xl">
@@ -159,9 +164,8 @@ async function renderTrending(data) {
     </div>
       `;
     } else if (datas.original_name == undefined) {
-      // console.log(datas.original_title);
       trending.innerHTML += `
-      <div
+      <div id=${datas.id}
       class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div class="movies bg-cardMovies rounded-xl">
@@ -206,7 +210,6 @@ function renderMoviesPopular() {
     datas.slice(random, random + 4).forEach((data, index) => {
       imagePopular[index].src = `${API_IMAGE}${data.poster_path}`;
       imagePopularTitle[index].innerText = `${data.original_title}`;
-      // console.log(data);
     });
   });
 }
@@ -219,7 +222,6 @@ function renderMoviesOnAir() {
     datas.slice(random, random + 4).forEach((data, index) => {
       imageOnAir[index].src = `${API_IMAGE}${data.poster_path}`;
       imageOnAirTitle[index].innerText = `${data.original_title}`;
-      // console.log(data);
     });
   });
 }
@@ -237,7 +239,6 @@ function renderTvPopular() {
   const imageTvPop = document.querySelectorAll(".movies-image__TvPop");
   const imageTvPopTitle = document.querySelectorAll(".movies-TvPop__title");
   renderTvPopular.then(function (datas) {
-    console.log(datas);
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageTvPop[index].src = `${API_IMAGE}${data.poster_path}`;
@@ -278,7 +279,6 @@ function renderTvTop() {
   const imageTvTop = document.querySelectorAll(".movies-image__TvTop");
   const imageTvTopTitle = document.querySelectorAll(".movies-TvTop__title");
   renderTvTop.then(function (datas) {
-    console.log(datas);
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageTvTop[index].src = `${API_IMAGE}${data.poster_path}`;
