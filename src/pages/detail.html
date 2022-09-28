@@ -4,16 +4,228 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Details</title>
   </head>
-  <body>
-    <h1 id="idData"></h1>
-    <script>
-      let data = JSON.parse(localStorage.getItem("id"));
-      console.log(data);
-      let idName = document.getElementById("idData");
-      idName.innerHTML = data[0];
-    </script>
+  <body class="bg-regal-blue overflow-x-hidden">
+    <nav class="border-gray-200 px-7 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+      <div
+        class="container flex flex-wrap justify-between items-center mx-auto"
+      >
+        <a href="" class="flex items-center">
+          <img
+            src="./../img/logo.png"
+            class="mr-3 h-6 sm:h-9"
+            alt="Flowbite Logo"
+          />
+          <span
+            class="self-center text-xl font-semibold whitespace-nowrap text-white"
+            >QTime DB</span
+          >
+        </a>
+        <button
+          id="hamburger"
+          type="button"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          data-drawer-target="drawer-right-example"
+          data-drawer-show="drawer-right-example"
+          data-drawer-placement="right"
+          aria-controls="drawer-right-example"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            class="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+        <div
+          id="drawer-right-example"
+          class="fixed z-40 h-screen p-4 overflow-y-auto bg-[#253355] w-80"
+          tabindex="-1"
+          aria-labelledby="drawer-right-label"
+        >
+          <button
+            type="button"
+            data-drawer-dismiss="drawer-right-example"
+            aria-controls="drawer-right-example"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span class="sr-only">Close menu</span>
+          </button>
+          <ul
+            class="flex bg-[#253355] lg:h-auto lg:bg-transparent flex-col p-4 h-screen mt-4 lg:flex-row lg:space-x-8 lg:justify-end lg:mt-0 lg:text-sm lg:font-medium md:border-0"
+          >
+            <li>
+              <a class="block py-2 pr-4 pl-3 text-white rounded" href=""
+                >Menu</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
+                >TV Shows</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
+                >Suggest me -></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div
+          class="w-[85%] hidden xl:block left-[-23rem] top-[50px] absolute lg:relative lg:top-0 lg:left-[0] lg:right-0 lg:w-auto sm:left-[-34rem] md:left-[-41rem] xl:left-0 xl:w-auto navbar-default transition-all ease-in-out duration-[.4s]"
+        >
+          <ul
+            class="flex bg-[#253355] lg:h-auto lg:bg-transparent flex-col p-4 h-screen mt-4 lg:flex-row lg:space-x-8 lg:justify-end lg:mt-0 lg:text-sm lg:font-medium md:border-0"
+          >
+            <li>
+              <a class="block py-2 pr-4 pl-3 text-white rounded" href=""
+                >Menu</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
+                >TV Shows</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
+                >Suggest me -></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div
+        class="hero px-7 xl:px-[12.5rem] max-h-[27rem] xl:max-h-[40rem] h-[78vh] xl:h-[65vh] flex flex-col justify-center items-start text-white"
+      >
+        <div class="cover h-auto rounded-3xl relative">
+          <div class="item">
+            <img
+              class="h-[13rem] xl:h-[35rem] rounded-3xl"
+              src="./../img/kny-large.jpg"
+              alt=""
+              srcset=""
+            />
+            <span
+              class="bg-gradient-to-t from-[#362C92] to-[#126297] opacity-[40%] rounded-[40px] w-full h-full absolute bottom-0"
+            ></span>
+            <div
+              class="frame w-[560px] h-[144px] flex flex-col justify-center items-start pl-10 absolute bottom-[-5rem] left-20 bg-cardMovies shadow-xl rounded-[24px]"
+            >
+              <div class="breadCrumb">
+                <nav class="flex" aria-label="Breadcrumb">
+                  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                      <a
+                        href="./../index.html"
+                        class="inline-flex items-center text-sm font-semibold text-breadcrumbs"
+                      >
+                        <svg
+                          class="w-4 h-4 mr-2"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                          ></path>
+                        </svg>
+                        Home
+                      </a>
+                    </li>
+                    <li>
+                      <div class="flex items-center">
+                        <p class="text-[#8996A1] mr-1">
+                          /
+                        </p>
+                        <a
+                          href="#"
+                          class="ml-1 text-sm font-semibold text-breadcrumbs"
+                          >Movies</a
+                        >
+                      </div>
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="detail-heading">
+                <h1 class="text-[32px]">Avengers: Endgame</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="wrapper-detail px-7 xl:px-0 xl:mt-28 flex justify-evenly w-full"
+      >
+        <div class="detail-img">
+          <img src="./../img/end.png" alt="" />
+        </div>
+        <div class="detail-text w-[480px] flex flex-col justify-a">
+          <div class="text__top">
+            <h2 class="text-[24px] text-movieTitle font-bold">
+              Part of the journey is the end.
+            </h2>
+            <p class="text-[20px] font-normal text-sinopsis">
+              After the devastating events of Avengers: Infinity War, the
+              universe is in ruins due to the efforts of the Mad Titan, Thanos.
+              With the help of remaining allies, the Avengers must assemble once
+              more in order to undo Thanos' actions and restore order to the
+              universe once and for all, no matter what consequences may be in
+              store.
+            </p>
+          </div>
+          <div class="text__bot">
+            <div class="bot-type">
+              <p class="text-detailSub">Type</p>
+              <p class="text-detailSubVal">Movie</p>
+            </div>
+            <div class="bot-release">
+              <p class="text-detailSub">Release Date:</p>
+              <p class="text-detailSubVal">2019-04-24</p>
+            </div>
+            <div class="bot-time">
+              <p class="text-detailSub">Run time</p>
+              <p class="text-detailSubVal">181 min</p>
+            </div>
+            <div class="bot-genres">
+              <p class="text-detailSub">Genres</p>
+              <p class="text-detailSubVal">
+                Adventure, Science Fiction, Action
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script></script>
     <script src="./../../dist/js/index.js"></script>
   </body>
 </html>

@@ -29,4 +29,8 @@
   .owl-carousel.owl-loaded {
     display: flex !important;
   }
+
+  .frame {
+    backdrop-filter: blur(24px);
+  }
 }

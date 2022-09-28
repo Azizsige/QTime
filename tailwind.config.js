@@ -15,6 +15,11 @@ module.exports = {
         cardMovies: "rgba(32,40,62,80%)",
         cardRating: "rgba(0,0,0,65%)",
         movieTitle: "#EBEEF5",
+        breadcrumbs: "#BEB7FB",
+        sinopsis: "#8E95A9",
+        detailSub: "#767E94",
+        detailSubVal: "#C3C8D4",
+        // bgDetail: "linear-gradient(#362C92, #126297)",
       },
       fontFamily: {
         primary: ["Poppins", "sans - serif"],

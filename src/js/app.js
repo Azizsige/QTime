@@ -307,15 +307,14 @@ window.addEventListener("click", function (el) {
   let target = el.target;
   console.log(parseInt(target.parentElement.id));
 
-  if (target == NaN) {
-    return;
-  } else {
-    this.window.location = "./pages/detail.html";
-  }
-
   dataId.push(target.parentElement.id);
   const dataParse = JSON.stringify(dataId);
   localStorage.setItem("id", dataParse);
+  if (parseInt(target.parentElement.id) == dataId[0]) {
+    window.location = "./pages/detail.html";
+  } else {
+    return;
+  }
 });
 
 getTrending();
