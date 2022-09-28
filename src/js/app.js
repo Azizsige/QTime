@@ -111,12 +111,12 @@ async function getTrending() {
   const media_type = ["all", "movie", "tv"];
   let randomMedia = Math.floor(Math.random() * 3);
   API_TRENDING = `https://api.themoviedb.org/3/trending/${media_type[randomMedia]}/day?api_key=${API_KEY}`;
-  console.log(API_TRENDING);
   all_type.innerHTML = media_type[randomMedia].toLocaleUpperCase();
 
   const url = await fetch(API_TRENDING);
   const datas = await url.json();
   renderTrending(datas.results);
+  getDetailsTrending(media_type[randomMedia]);
 }
 
 function getMoviesNow() {
@@ -144,18 +144,18 @@ async function renderTrending(data) {
   await data.slice(random, random + 8).forEach((datas) => {
     if (datas.original_title == undefined) {
       trending.innerHTML += `
-      <div id=${datas.id}
+      <div id="${datas.id}"
       class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
-      <div class="movies bg-cardMovies rounded-xl">
-        <div class="movies-image p-2">
+      <div id="${datas.id}" class="movies movies--all bg-cardMovies rounded-xl">
+        <div id="${datas.id}" class="movies-image p-2">
           <img
             src="${API_IMAGE}${datas.poster_path}"
             alt=""
             class="rounded-xl"
           />
         </div>
-        <div
+        <div id="${datas.id}"
           class="movies-title text-movieTitle p-3 xl:p-[1.75rem] text-[12px] xl:text-[20px]"
         >
           <h6>${datas.original_name}</h6>
@@ -165,18 +165,18 @@ async function renderTrending(data) {
       `;
     } else if (datas.original_name == undefined) {
       trending.innerHTML += `
-      <div id=${datas.id}
+      <div id="${datas.id}"
       class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
-      <div class="movies bg-cardMovies rounded-xl">
-        <div class="movies-image p-2">
-        <img
+      <div id="${datas.id}" class="movies movies--all bg-cardMovies rounded-xl">
+        <div id="${datas.id}" class="movies-image p-2">
+        <img id="${datas.id}"
         src="${API_IMAGE}${datas.poster_path}"
         alt=""
         class="rounded-xl"
       />
         </div>
-        <div
+        <div id="${datas.id}"
           class="movies-title text-movieTitle p-3 xl:p-[1.75rem] text-[12px] xl:text-[20px]"
         >
           <h6>${datas.original_title}</h6>
@@ -288,6 +288,35 @@ function renderTvTop() {
 }
 
 // TV
+
+function getDetailsTrending(type) {
+  console.log(type);
+  let API_DETAILS_MOVIE = `https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US`;
+  if (type == "all") {
+    API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
+  } else if (type == "movie") {
+    API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
+  } else {
+    API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
+  }
+  return API_DETAILS_MOVIE;
+}
+
+window.addEventListener("click", function (el) {
+  let dataId = [];
+  let target = el.target;
+  console.log(parseInt(target.parentElement.id));
+
+  if (target == NaN) {
+    return;
+  } else {
+    this.window.location = "./pages/detail.html";
+  }
+
+  dataId.push(target.parentElement.id);
+  const dataParse = JSON.stringify(dataId);
+  localStorage.setItem("id", dataParse);
+});
 
 getTrending();
 renderMoviesNow();

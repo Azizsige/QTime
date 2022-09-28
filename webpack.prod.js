@@ -20,8 +20,20 @@ module.exports = merge(config, {
       "window.jQuery": "jquery",
     }),
     new HtmlWebpackPlugin({
+      filename: "index.html",
       template: "./src/index.html",
       inject: "body",
+      chunks: ["index"],
     }),
+    new HtmlWebpackPlugin({
+      filename: "pages/detail.html",
+      template: "./src/pages/detail.html",
+      inject: "body",
+      chunks: ["index"],
+    }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/pages/detail.html",
+    //   inject: "body",
+    // }),
   ],
 });
