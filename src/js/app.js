@@ -13,6 +13,8 @@ import "owl.carousel/dist/owl.carousel.min.js";
 import "owl.carousel";
 import $ from "jquery";
 
+let dataId = [];
+
 $(document).ready(function () {
   $(".owl-jumbo").owlCarousel({
     loop: true,
@@ -139,23 +141,22 @@ function getMoviesOnAir() {
 
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
-
   const random = Math.floor(Math.random() * (data.length - 1) + 1);
   await data.slice(random, random + 8).forEach((datas) => {
     if (datas.original_title == undefined) {
       trending.innerHTML += `
-      <div id="${datas.id}"
+      <div id="${datas.id}" data-media-type="${datas.media_type}"
       class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
-      <div id="${datas.id}" class="movies movies--all bg-cardMovies rounded-xl">
-        <div id="${datas.id}" class="movies-image p-2">
+      <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies movies--all bg-cardMovies rounded-xl">
+        <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies-image p-2">
           <img
             src="${API_IMAGE}${datas.poster_path}"
             alt=""
             class="rounded-xl"
           />
         </div>
-        <div id="${datas.id}"
+        <div id="${datas.id}" data-media-type="${datas.media_type}"
           class="movies-title text-movieTitle p-3 xl:p-[1.75rem] text-[12px] xl:text-[20px]"
         >
           <h6>${datas.original_name}</h6>
@@ -165,18 +166,18 @@ async function renderTrending(data) {
       `;
     } else if (datas.original_name == undefined) {
       trending.innerHTML += `
-      <div id="${datas.id}"
+      <div id="${datas.id}" data-media-type="${datas.media_type}"
       class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
-      <div id="${datas.id}" class="movies movies--all bg-cardMovies rounded-xl">
-        <div id="${datas.id}" class="movies-image p-2">
+      <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies movies--all bg-cardMovies rounded-xl">
+        <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies-image p-2">
         <img id="${datas.id}"
         src="${API_IMAGE}${datas.poster_path}"
         alt=""
         class="rounded-xl"
       />
         </div>
-        <div id="${datas.id}"
+        <div id="${datas.id}" data-media-type="${datas.media_type}"
           class="movies-title text-movieTitle p-3 xl:p-[1.75rem] text-[12px] xl:text-[20px]"
         >
           <h6>${datas.original_title}</h6>
@@ -290,7 +291,6 @@ function renderTvTop() {
 // TV
 
 function getDetailsTrending(type) {
-  console.log(type);
   let API_DETAILS_MOVIE = `https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US`;
   if (type == "all") {
     API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
@@ -303,14 +303,16 @@ function getDetailsTrending(type) {
 }
 
 window.addEventListener("click", function (el) {
-  let dataId = [];
   let target = el.target;
-  console.log(parseInt(target.parentElement.id));
-
-  dataId.push(target.parentElement.id);
+  console.log(target.parentElement.dataset.mediaType);
+  dataId.unshift({
+    id: target.parentElement.id,
+    media_type: target.parentElement.dataset.mediaType,
+  });
+  console.log(dataId);
   const dataParse = JSON.stringify(dataId);
-  localStorage.setItem("id", dataParse);
-  if (parseInt(target.parentElement.id) == dataId[0]) {
+  localStorage.setItem("dataTrending", dataParse);
+  if (parseInt(target.parentElement.id) == dataId[0].id) {
     window.location = "./pages/detail.html";
   } else {
     return;

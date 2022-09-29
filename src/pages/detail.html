@@ -164,17 +164,17 @@
                           /
                         </p>
                         <a
+                          id="media_type"
                           href="#"
                           class="ml-1 text-[12px] xl:text-sm font-semibold text-breadcrumbs"
-                          >Movies</a
-                        >
+                        ></a>
                       </div>
                     </li>
                   </ol>
                 </nav>
               </div>
               <div class="detail-heading">
-                <h1 class="text-[16px] xl:text-[32px]">Avengers: Endgame</h1>
+                <h1 id="dataId" class="text-[16px] xl:text-[32px]"></h1>
               </div>
             </div>
           </div>
@@ -186,8 +186,9 @@
       >
         <div class="detail-img">
           <img
+            id="detailImg"
             class="xl:w-auto w-52 sm:w-80 m-auto xl:m-0"
-            src="./../img/end.png"
+            src=""
             alt=""
           />
         </div>
@@ -195,51 +196,112 @@
           class="detail-text w-auto lg:w-[480px] flex flex-col space-y-10 xl:space-y-0"
         >
           <div class="text__top">
-            <h2 class="text-[20px] xl:text-[24px] text-movieTitle font-bold">
-              Part of the journey is the end.
-            </h2>
-            <p class="text-[16px] xl:text-[20px] font-normal text-sinopsis">
-              After the devastating events of Avengers: Infinity War, the
-              universe is in ruins due to the efforts of the Mad Titan, Thanos.
-              With the help of remaining allies, the Avengers must assemble once
-              more in order to undo Thanos' actions and restore order to the
-              universe once and for all, no matter what consequences may be in
-              store.
-            </p>
+            <h2
+              id="top_tagline"
+              class="text-[20px] xl:text-[24px] text-movieTitle font-bold"
+            ></h2>
+            <p
+              id="top_overview"
+              class="text-[16px] xl:text-[20px] font-normal text-sinopsis"
+            ></p>
           </div>
           <div
             class="text__bot flex flex-col justify-evenly h-full space-y-5 xl:space-y-0 mb-10"
           >
             <div class="bot-type">
               <p class="text-detailSub text-[14px] xl:text-[16px]">Type</p>
-              <p class="text-detailSubVal text-[16px] xl:text-[20px]">Movie</p>
+              <p
+                id="bot_type"
+                class="text-detailSubVal text-[16px] xl:text-[20px]"
+              ></p>
             </div>
             <div class="bot-release">
               <p class="text-detailSub text-[14px] xl:text-[16px]">
                 Release Date:
               </p>
-              <p class="text-detailSubVal text-[16px] xl:text-[20px]">
-                2019-04-24
-              </p>
+              <p
+                id="bot_release"
+                class="text-detailSubVal text-[16px] xl:text-[20px]"
+              ></p>
             </div>
             <div class="bot-time">
               <p class="text-detailSub text-[14px] xl:text-[16px]">Run time</p>
-              <p class="text-detailSubVal text-[16px] xl:text-[20px]">
-                181 min
-              </p>
+              <p
+                id="bot_runtime"
+                class="text-detailSubVal text-[16px] xl:text-[20px]"
+              ></p>
             </div>
             <div class="bot-genres">
               <p class="text-detailSub text-[14px] xl:text-[16px]">Genres</p>
-              <p class="text-detailSubVal text-[16px] xl:text-[20px]">
-                Adventure, Science Fiction, Action
-              </p>
+              <p
+                id="bot_genres"
+                class="text-detailSubVal text-[16px] xl:text-[20px]"
+              ></p>
             </div>
           </div>
         </div>
       </div>
     </main>
 
-    <script></script>
+    <script>
+      const API_KEY = "0407909af3830d4ca4556ca68266735f";
+      // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+      // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+      let dataId = document.getElementById("dataId");
+      let media_type = document.getElementById("media_type");
+      let detailImg = document.getElementById("detailImg");
+      let bot_type = document.getElementById("bot_type");
+      let bot_release = document.getElementById("bot_release");
+      let bot_runtime = document.getElementById("bot_runtime");
+      let bot_genres = document.getElementById("bot_genres");
+      let top_tagline = document.getElementById("top_tagline");
+      let top_overview = document.getElementById("top_overview");
+      let getId = JSON.parse(localStorage.getItem("dataTrending"));
+      // dataId.innerHTML = getId[0].id;
+      media_type.innerHTML = getId[0].media_type.toUpperCase();
+
+      function getDataType() {
+        if (media_type == "tv") {
+          getDetail(getId[0].media_type);
+          return;
+        }
+        return getDetail(getId[0].media_type);
+      }
+
+      function getDetail(type) {
+        return fetch(
+          `https://api.themoviedb.org/3/${type}/${getId[0].id}?api_key=${API_KEY}&language=en-US`
+        )
+          .then((response) => response.json())
+          .then((datas) => renderDetail(datas));
+      }
+
+      function renderDetail(datas) {
+        console.log(datas);
+        detailImg.src = `https://image.tmdb.org/t/p/w500${datas.poster_path}`;
+        bot_type.innerHTML = getId[0].media_type.toUpperCase();
+        top_tagline.innerHTML = datas.tagline;
+        top_overview.innerHTML += datas.overview;
+        if (
+          datas.release_date == undefined &&
+          datas.runtime == undefined &&
+          datas.original_title == undefined
+        ) {
+          dataId.innerHTML = datas.name;
+          bot_release.innerHTML = `${datas.first_air_date}`;
+          bot_runtime.innerHTML = `${datas.last_episode_to_air.episode_number} Episode`;
+        } else {
+          dataId.innerHTML = datas.title;
+          bot_release.innerHTML = `${datas.release_date}`;
+          bot_runtime.innerHTML = `${datas.runtime} min`;
+        }
+
+        datas.genres.forEach((genre) => {
+          bot_genres.innerHTML += ` ${genre.name} ,`;
+        });
+      }
+      getDataType();
+    </script>
     <script src="./../../dist/js/index.js"></script>
   </body>
 </html>
