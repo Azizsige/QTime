@@ -13,7 +13,12 @@ import "owl.carousel/dist/owl.carousel.min.js";
 import "owl.carousel";
 import $ from "jquery";
 
-let dataId = [];
+let storeTranding = [];
+let storeMovie = [];
+let storeTv = [];
+const allCont = document.getElementById("all");
+const moviesCont = document.getElementById("movies");
+const tvsCont = document.getElementById("tvShows");
 
 $(document).ready(function () {
   $(".owl-jumbo").owlCarousel({
@@ -146,7 +151,7 @@ async function renderTrending(data) {
     if (datas.original_title == undefined) {
       trending.innerHTML += `
       <div id="${datas.id}" data-media-type="${datas.media_type}"
-      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
+      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] hover:cursor-pointer sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies movies--all bg-cardMovies rounded-xl">
         <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies-image p-2">
@@ -159,7 +164,7 @@ async function renderTrending(data) {
         <div id="${datas.id}" data-media-type="${datas.media_type}"
           class="movies-title text-movieTitle p-3 xl:p-[1.75rem] text-[12px] xl:text-[20px]"
         >
-          <h6>${datas.original_name}</h6>
+          <h6 class="hover:text-[#9C92F8]">${datas.original_name}</h6>
         </div>
       </div>
     </div>
@@ -167,7 +172,7 @@ async function renderTrending(data) {
     } else if (datas.original_name == undefined) {
       trending.innerHTML += `
       <div id="${datas.id}" data-media-type="${datas.media_type}"
-      class="movie w-[9rem] shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
+      class="movie w-[9rem]  hover:cursor-pointer shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[9rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies movies--all bg-cardMovies rounded-xl">
         <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies-image p-2">
@@ -180,7 +185,7 @@ async function renderTrending(data) {
         <div id="${datas.id}" data-media-type="${datas.media_type}"
           class="movies-title text-movieTitle p-3 xl:p-[1.75rem] text-[12px] xl:text-[20px]"
         >
-          <h6>${datas.original_title}</h6>
+          <h6 class="hover:text-[#9C92F8]">${datas.original_title}</h6>
         </div>
       </div>
     </div>
@@ -193,11 +198,15 @@ function renderMoviesNow() {
   const renderMoviesNow = getMoviesNow();
   const imageNow = document.querySelectorAll(".movies-image__now");
   const imageNowTitle = document.querySelectorAll(".movies-now__title");
+  let movieNow_id = document.querySelectorAll(".movies-image");
+  let movieNow_id2 = document.querySelectorAll(".movies-title");
   renderMoviesNow.then(function (datas) {
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageNow[index].src = `${API_IMAGE}${data.poster_path}`;
       imageNowTitle[index].innerText = `${data.original_title}`;
+      movieNow_id[index].id = data.id;
+      movieNow_id2[index].id = data.id;
     });
   });
 }
@@ -302,22 +311,38 @@ function getDetailsTrending(type) {
   return API_DETAILS_MOVIE;
 }
 
-window.addEventListener("click", function (el) {
+allCont.addEventListener("click", function (el) {
   let target = el.target;
   console.log(target.parentElement.dataset.mediaType);
-  dataId.unshift({
+  storeTranding.unshift({
     id: target.parentElement.id,
     media_type: target.parentElement.dataset.mediaType,
   });
-  console.log(dataId);
-  const dataParse = JSON.stringify(dataId);
+  // console.log(dataId);
+  const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
-  if (parseInt(target.parentElement.id) == dataId[0].id) {
+  if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     window.location = "./pages/detail.html";
   } else {
     return;
   }
 });
+
+moviesCont.addEventListener("click", function (el) {
+  let target = el.target;
+  console.log(target.parentElement.id);
+  storeMovie.unshift(target.parentElement.id);
+  // console.log(dataId);
+  const dataParse = JSON.stringify(storeMovie);
+  localStorage.setItem("dataMovie", dataParse);
+  if (parseInt(target.parentElement.id) == storeMovie[0]) {
+    window.location = "./pages/detail.html";
+  } else {
+    return;
+  }
+});
+
+// localStorage.clear();
 
 getTrending();
 renderMoviesNow();
