@@ -114,6 +114,7 @@ tabsBtn.forEach((element) => {
 
 async function getTrending() {
   let all_type = document.getElementById("all_type");
+  let loader = document.querySelector(".loader");
   let API_TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
   const media_type = ["all", "movie", "tv"];
   let randomMedia = Math.floor(Math.random() * 3);
@@ -122,6 +123,9 @@ async function getTrending() {
 
   const url = await fetch(API_TRENDING);
   const datas = await url.json();
+
+  loader.style.display = "none";
+
   renderTrending(datas.results);
   getDetailsTrending(media_type[randomMedia]);
 }
