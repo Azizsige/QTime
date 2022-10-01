@@ -2,7 +2,7 @@
 @tailwind utilities;
 @tailwind components;
 
-@layer base {
+@layer components {
   .transition-all {
     transition-duration: 0.4s !important;
   }
@@ -34,12 +34,14 @@
     backdrop-filter: blur(24px);
     transition: all ease-in-out 300ms;
   }
-
+  /* 
   .item:hover .frame {
     bottom: -11rem !important;
-  }
+  } */
 
-  .cover:hover .wrapper-detail {
-    margin-top: -13rem !important;
+  @media (min-width: 1024px) {
+    .item:hover .frame {
+      bottom: -11rem !important;
+    }
   }
 }

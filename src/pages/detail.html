@@ -133,7 +133,7 @@
             /> -->
             <iframe
               id="iframe"
-              class="w-full h-full aspect-8/3 rounded-3xl"
+              class="w-full h-full aspect-4/3 md:aspect-6/3 lg:aspect-7/3 xl:aspect-8/3 rounded-3xl"
               src=""
               title="YouTube video player"
               frameborder="0"
@@ -144,7 +144,7 @@
               class="bg-gradient-to-t from-[#362C92] to-[#126297] opacity-[40%] rounded-[40px] w-full h-full absolute bottom-0"
             ></span> -->
             <div
-              class="frame w-[14rem] h-[75px] xl:w-[560px] xl:h-[144px] flex flex-col justify-center items-start pl-6 xl:pl-10 absolute xl:bottom-[-5rem] -bottom-10 left-3 xl:left-20 bg-cardMovies shadow-xl rounded-[24px]"
+              class="frame w-auto h-auto py-4 sm:py-7 sm:pl-auto sm:px-5 xl:py-0 xl:w-[560px] xl:h-[144px] flex flex-col justify-center items-start pl-6 xl:pl-10 absolute xl:bottom-[-5rem] -bottom-32 left-3 xl:left-20 bg-cardMovies shadow-xl rounded-[24px]"
             >
               <div class="breadCrumb">
                 <nav class="flex" aria-label="Breadcrumb">
@@ -191,7 +191,7 @@
       </div>
 
       <div
-        class="wrapper-detail px-7 xl:px-0 mt-0 sm:mt-20 xl:mt-28 flex lg:flex-row flex-col justify-evenly w-full space-y-10 lg:space-y-0 xl:space-y-0"
+        class="wrapper-detail px-7 xl:px-0 mt-28 sm:mt-40 xl:mt-28 flex lg:flex-row flex-col justify-evenly w-full space-y-10 lg:space-y-0 xl:space-y-0"
       >
         <div class="detail-img">
           <img
@@ -337,6 +337,13 @@
           bot_genres.innerHTML += ` ${genre.name} ,`;
         });
       }
+
+      function modulus() {
+        let number = 334 % 65;
+        console.log(number);
+      }
+
+      modulus();
       getDataType();
     </script>
     <script src="./../../dist/js/index.js"></script>
