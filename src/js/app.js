@@ -215,11 +215,15 @@ function renderMoviesPopular() {
   const renderMoviesPopular = getMoviesPopular();
   const imagePopular = document.querySelectorAll(".movies-image__popular");
   const imagePopularTitle = document.querySelectorAll(".movies-popular__title");
+  let moviePop_id = document.querySelectorAll(".moviesPop-image");
+  let moviePop_id2 = document.querySelectorAll(".moviesPop-title");
   renderMoviesPopular.then(function (datas) {
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imagePopular[index].src = `${API_IMAGE}${data.poster_path}`;
       imagePopularTitle[index].innerText = `${data.original_title}`;
+      moviePop_id[index].id = data.id;
+      moviePop_id2[index].id = data.id;
     });
   });
 }
@@ -227,11 +231,15 @@ function renderMoviesOnAir() {
   const renderMoviesOnAir = getMoviesOnAir();
   const imageOnAir = document.querySelectorAll(".movies-image__OnAir");
   const imageOnAirTitle = document.querySelectorAll(".movies-OnAir__title");
+  let movieOnAir_id = document.querySelectorAll(".moviesOnAir-image");
+  let movieOnAir_id2 = document.querySelectorAll(".moviesOnAir-title");
   renderMoviesOnAir.then(function (datas) {
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageOnAir[index].src = `${API_IMAGE}${data.poster_path}`;
       imageOnAirTitle[index].innerText = `${data.original_title}`;
+      movieOnAir_id[index].id = data.id;
+      movieOnAir_id2[index].id = data.id;
     });
   });
 }
@@ -330,12 +338,15 @@ allCont.addEventListener("click", function (el) {
 
 moviesCont.addEventListener("click", function (el) {
   let target = el.target;
-  console.log(target.parentElement.id);
-  storeMovie.unshift(target.parentElement.id);
+  console.log(target.parentElement.dataset.mediaType);
+  storeTranding.unshift({
+    id: target.parentElement.id,
+    media_type: target.parentElement.dataset.mediaType,
+  });
   // console.log(dataId);
-  const dataParse = JSON.stringify(storeMovie);
-  localStorage.setItem("dataMovie", dataParse);
-  if (parseInt(target.parentElement.id) == storeMovie[0]) {
+  const dataParse = JSON.stringify(storeTranding);
+  localStorage.setItem("dataTrending", dataParse);
+  if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     window.location = "./pages/detail.html";
   } else {
     return;
