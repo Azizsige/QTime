@@ -24,6 +24,9 @@ module.exports = {
       fontFamily: {
         primary: ["Poppins", "sans - serif"],
       },
+      aspectRatio: {
+        "8/3": "8 / 3",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],

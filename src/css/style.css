@@ -32,5 +32,14 @@
 
   .frame {
     backdrop-filter: blur(24px);
+    transition: all ease-in-out 300ms;
+  }
+
+  .item:hover .frame {
+    bottom: -11rem !important;
+  }
+
+  .cover:hover .wrapper-detail {
+    margin-top: -13rem !important;
   }
 }
