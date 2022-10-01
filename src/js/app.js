@@ -256,11 +256,15 @@ function renderTvPopular() {
   const renderTvPopular = getTvPopular();
   const imageTvPop = document.querySelectorAll(".movies-image__TvPop");
   const imageTvPopTitle = document.querySelectorAll(".movies-TvPop__title");
+  let tvPop_id = document.querySelectorAll(".tvPop-image");
+  let tvPop_id2 = document.querySelectorAll(".tvPop-title");
   renderTvPopular.then(function (datas) {
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageTvPop[index].src = `${API_IMAGE}${data.poster_path}`;
       imageTvPopTitle[index].innerText = `${data.original_name}`;
+      tvPop_id[index].id = data.id;
+      tvPop_id2[index].id = data.id;
     });
   });
 }
@@ -277,11 +281,15 @@ function renderTvAiring() {
   const imageTvAiringTitle = document.querySelectorAll(
     ".movies-TvAiring__title"
   );
+  let tvAiring_id = document.querySelectorAll(".tvAiring-image");
+  let tvAiring_id2 = document.querySelectorAll(".tvAiring-title");
   renderTvAiring.then(function (datas) {
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageTvAiring[index].src = `${API_IMAGE}${data.poster_path}`;
       imageTvAiringTitle[index].innerText = `${data.original_name}`;
+      tvAiring_id[index].id = data.id;
+      tvAiring_id2[index].id = data.id;
     });
   });
 }
@@ -296,11 +304,15 @@ function renderTvTop() {
   const renderTvTop = getTvTop();
   const imageTvTop = document.querySelectorAll(".movies-image__TvTop");
   const imageTvTopTitle = document.querySelectorAll(".movies-TvTop__title");
+  let tvTopRated_id = document.querySelectorAll(".tvTopRated-image");
+  let tvTopRated_id2 = document.querySelectorAll(".tvTopRated-title");
   renderTvTop.then(function (datas) {
     const random = Math.floor(Math.random() * (datas.length - 1) + 1);
     datas.slice(random, random + 4).forEach((data, index) => {
       imageTvTop[index].src = `${API_IMAGE}${data.poster_path}`;
       imageTvTopTitle[index].innerText = `${data.original_name}`;
+      tvTopRated_id[index].id = data.id;
+      tvTopRated_id2[index].id = data.id;
     });
   });
 }
@@ -337,6 +349,23 @@ allCont.addEventListener("click", function (el) {
 });
 
 moviesCont.addEventListener("click", function (el) {
+  let target = el.target;
+  console.log(target.parentElement.dataset.mediaType);
+  storeTranding.unshift({
+    id: target.parentElement.id,
+    media_type: target.parentElement.dataset.mediaType,
+  });
+  // console.log(dataId);
+  const dataParse = JSON.stringify(storeTranding);
+  localStorage.setItem("dataTrending", dataParse);
+  if (parseInt(target.parentElement.id) == storeTranding[0].id) {
+    window.location = "./pages/detail.html";
+  } else {
+    return;
+  }
+});
+
+tvsCont.addEventListener("click", function (el) {
   let target = el.target;
   console.log(target.parentElement.dataset.mediaType);
   storeTranding.unshift({
