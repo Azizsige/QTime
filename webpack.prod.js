@@ -31,6 +31,12 @@ module.exports = merge(config, {
       inject: "body",
       chunks: ["index"],
     }),
+    new HtmlWebpackPlugin({
+      filename: "pages/search.html",
+      template: "./src/pages/search.html",
+      inject: "body",
+      chunks: ["search"],
+    }),
     // new HtmlWebpackPlugin({
     //   template: "./src/pages/detail.html",
     //   inject: "body",
