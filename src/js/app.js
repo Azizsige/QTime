@@ -150,6 +150,7 @@ function getMoviesOnAir() {
 
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
+  trending.innerHTML = "";
   const random = Math.floor(Math.random() * (data.length - 1) + 1);
   await data.slice(random, random + 8).forEach((datas) => {
     if (datas.original_title == undefined) {
