@@ -347,7 +347,11 @@ allCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    window.location = "./pages/detail.html";
+    if (window.location.pathname == "src/index.html") {
+      window.location = "./pages/detail.html";
+    } else {
+      window.location = "./../pages/detail.html";
+    }
   } else {
     return;
   }
@@ -364,7 +368,11 @@ moviesCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    window.location = "./pages/detail.html";
+    if (window.location.pathname == "src/index.html") {
+      window.location = "./pages/detail.html";
+    } else {
+      window.location = "./../pages/detail.html";
+    }
   } else {
     return;
   }
@@ -381,7 +389,11 @@ tvsCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    window.location = "./pages/detail.html";
+    if (window.location.pathname == "src/index.html") {
+      window.location = "./pages/detail.html";
+    } else {
+      window.location = "./../pages/detail.html";
+    }
   } else {
     return;
   }
