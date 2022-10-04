@@ -348,9 +348,9 @@ allCont.addEventListener("click", function (el) {
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (window.location.pathname == "src/index.html") {
-      window.location = "./pages/detail.html";
+      window.location = "./src/pages/detail.html";
     } else {
-      window.location = "./../pages/detail.html";
+      window.location = "./pages/detail.html";
     }
   } else {
     return;
@@ -369,9 +369,9 @@ moviesCont.addEventListener("click", function (el) {
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (window.location.pathname == "src/index.html") {
-      window.location = "./pages/detail.html";
+      window.location = "./src/pages/detail.html";
     } else {
-      window.location = "./../pages/detail.html";
+      window.location = "./pages/detail.html";
     }
   } else {
     return;
@@ -390,9 +390,9 @@ tvsCont.addEventListener("click", function (el) {
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (window.location.pathname == "src/index.html") {
-      window.location = "./pages/detail.html";
+      window.location = "./src/pages/detail.html";
     } else {
-      window.location = "./../pages/detail.html";
+      window.location = "./pages/detail.html";
     }
   } else {
     return;
