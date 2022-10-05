@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/3c72b6bd6b.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Q-Time DB</title>
   </head>
   <body class="bg-regal-blue overflow-x-hidden">
@@ -48,7 +52,7 @@
         </button>
         <div
           id="drawer-right-example"
-          class="fixed z-40 h-screen p-4 overflow-y-auto bg-[#253355] w-80"
+          class="fixed z-40 h-screen p-4 overflow-y-auto bg-[#253355] w-60"
           tabindex="-1"
           aria-labelledby="drawer-right-label"
         >
@@ -83,16 +87,6 @@
                 >Search Here</a
               >
             </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >TV Shows</a
-              >
-            </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >Suggest me -></a
-              >
-            </li>
           </ul>
         </div>
         <div
@@ -108,16 +102,6 @@
                 >Search Here</a
               >
             </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >TV Shows</a
-              >
-            </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >Suggest me -></a
-              >
-            </li>
           </ul>
         </div>
       </div>
@@ -125,12 +109,12 @@
 
     <main>
       <div
-        class="hero px-7 xl:px-[12.5rem] max-h-[27rem] xl:max-h-[40rem] h-[78vh] xl:h-[65vh] flex flex-col justify-center items-start text-white"
+        class="hero px-7 xl:px-[12.5rem] max-h-[27rem] xl:max-h-[40rem] 2xl:h-screen h-[78vh] xl:h-auto flex flex-col justify-center items-start text-white"
       >
         <div class="cover h-auto owl-carousel owl-jumbo rounded-3xl">
           <div class="item">
             <img
-              class="h-[13rem] xl:h-[35rem] rounded-3xl"
+              class="h-[13rem] xl:h-[28rem] 2xl:h-[35rem] rounded-3xl"
               src="./img/kny-large.jpg"
               alt=""
               srcset=""
@@ -141,7 +125,7 @@
           </div>
           <div class="item">
             <img
-              class="xl:h-[35rem] rounded-3xl h-[13rem]"
+              class="xl:h-[28rem] 2xl:h-[35rem] rounded-3xl h-[13rem]"
               src="./img/op.jpg"
               alt=""
               srcset=""
@@ -152,7 +136,7 @@
           </div>
           <div class="item">
             <img
-              class="xl:h-[35rem] rounded-3xl h-[13rem]"
+              class="xl:h-[28rem] 2xl:h-[35rem] rounded-3xl h-[13rem]"
               src="./img/narto.jpg"
               alt=""
               srcset=""
@@ -163,7 +147,7 @@
           </div>
           <div class="item">
             <img
-              class="xl:h-[35rem] rounded-3xl h-[13rem]"
+              class="xl:h-[28rem] 2xl:h-[35rem] rounded-3xl h-[13rem]"
               src="./img/sxf.jpeg"
               alt=""
               srcset=""
@@ -174,7 +158,7 @@
           </div>
           <div class="item">
             <img
-              class="xl:h-[35rem] rounded-3xl h-[13rem]"
+              class="xl:h-[28rem] 2xl:h-[35rem] rounded-3xl h-[13rem]"
               src="./img/kny1.jpeg"
               alt=""
               srcset=""
@@ -276,7 +260,9 @@
               <div class="wrapper-all h-full">
                 <div class="all-heading text-[30px] flex text-tabsTitle">
                   <h1 id="all_type"></h1>
-                  <span class="text-[16px] self-end ml-1">(120)</span>
+                  <span id="length" class="text-[20px] self-end ml-1"
+                    >( 8 )</span
+                  >
                 </div>
                 <hr class="mt-3 w-full text-tabsTitle" />
                 <div
@@ -478,7 +464,7 @@
                 </div>
                 <div
                   id="trending"
-                  class="all-movies flex flex-wrap space-y-8 mt-0 sm:space-y-12 sm:mt-[-1rem] xl:space-y-12 2xl:space-y-20 justify-between mb-20 xl:mt-[-1rem] 2xl:mt-[-3rem]"
+                  class="all-movies flex flex-wrap space-y-8 mt-0 sm:space-y-12 sm:mt-[-1rem] xl:space-x-2 xl:space-y-12 2xl:space-y-20 justify-between mb-20 xl:mt-[-1rem] 2xl:mt-[-3rem]"
                 ></div>
               </div>
             </div>
@@ -512,6 +498,12 @@
                             alt=""
                             class="rounded-xl movies-image__now"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieRating"></span>
+                          </div>
                         </div>
                         <div
                           data-media-type="movie"
@@ -536,6 +528,12 @@
                             alt=""
                             class="rounded-xl movies-image__now"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieRating"></span>
+                          </div>
                         </div>
                         <div
                           data-media-type="movie"
@@ -560,6 +558,12 @@
                             alt=""
                             class="rounded-xl movies-image__now"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieRating"></span>
+                          </div>
                         </div>
                         <div
                           data-media-type="movie"
@@ -584,6 +588,12 @@
                             alt=""
                             class="rounded-xl movies-image__now"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieRating"></span>
+                          </div>
                         </div>
                         <div
                           data-media-type="movie"
@@ -619,6 +629,12 @@
                             alt=""
                             class="rounded-xl movies-image__popular"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="moviePopularRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -643,6 +659,12 @@
                             alt=""
                             class="rounded-xl movies-image__popular"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="moviePopularRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -667,6 +689,12 @@
                             alt=""
                             class="rounded-xl movies-image__popular"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="moviePopularRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -691,6 +719,12 @@
                             alt=""
                             class="rounded-xl movies-image__popular"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="moviePopularRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -726,6 +760,12 @@
                             alt=""
                             class="rounded-xl movies-image__OnAir"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieOnAirRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -750,6 +790,12 @@
                             alt=""
                             class="rounded-xl movies-image__OnAir"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieOnAirRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -774,6 +820,12 @@
                             alt=""
                             class="rounded-xl movies-image__OnAir"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieOnAirRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -798,6 +850,12 @@
                             alt=""
                             class="rounded-xl movies-image__OnAir"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="movieOnAirRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -838,6 +896,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvPop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -858,6 +922,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvPop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -878,6 +948,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvPop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -898,6 +974,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvPop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -933,6 +1015,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvAiring"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvAiringRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -957,6 +1045,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvAiring"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvAiringRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -981,6 +1075,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvAiring"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvAiringRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -1001,6 +1101,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvAiring"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvAiringRating"></span>
+                          </div>
                         </div>
                         <div
                           class="movies-title text-movieTitle hover:text-[#9C92F8] p-3 text-[12px] xl:text-[16px]"
@@ -1034,6 +1140,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvTop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvTopRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -1058,6 +1170,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvTop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvTopRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -1082,6 +1200,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvTop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvTopRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""
@@ -1106,6 +1230,12 @@
                             alt=""
                             class="rounded-xl movies-image__TvTop"
                           />
+                          <div
+                            class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold"
+                          >
+                            <i class="far fa-star"></i>
+                            <span id="tvTopRating"></span>
+                          </div>
                         </div>
                         <div
                           id=""

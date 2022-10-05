@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/3c72b6bd6b.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Details</title>
   </head>
   <body class="bg-regal-blue overflow-x-hidden">
@@ -11,7 +15,7 @@
       <div
         class="container flex flex-wrap justify-between items-center mx-auto"
       >
-        <a href="" class="flex items-center">
+        <a href="./../index.html" class="flex items-center">
           <img
             src="./../img/logo.png"
             class="mr-3 h-6 sm:h-9"
@@ -48,7 +52,7 @@
         </button>
         <div
           id="drawer-right-example"
-          class="fixed z-40 h-screen p-4 overflow-y-auto bg-[#253355] w-80"
+          class="fixed z-40 h-screen p-4 overflow-y-auto bg-[#253355] w-60"
           tabindex="-1"
           aria-labelledby="drawer-right-label"
         >
@@ -77,18 +81,10 @@
             class="flex bg-[#253355] lg:h-auto lg:bg-transparent flex-col p-4 h-screen mt-4 lg:flex-row lg:space-x-8 lg:justify-end lg:mt-0 lg:text-sm lg:font-medium md:border-0"
           >
             <li>
-              <a class="block py-2 pr-4 pl-3 text-white rounded" href=""
-                >Menu</a
-              >
-            </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >TV Shows</a
-              >
-            </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >Suggest me -></a
+              <a
+                class="block py-2 pr-4 pl-3 text-white rounded"
+                href="./search.html"
+                >Search Here</a
               >
             </li>
           </ul>
@@ -100,18 +96,10 @@
             class="flex bg-[#253355] lg:h-auto lg:bg-transparent flex-col p-4 h-screen mt-4 lg:flex-row lg:space-x-8 lg:justify-end lg:mt-0 lg:text-sm lg:font-medium md:border-0"
           >
             <li>
-              <a class="block py-2 pr-4 pl-3 text-white rounded" href=""
-                >Menu</a
-              >
-            </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >TV Shows</a
-              >
-            </li>
-            <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white rounded"
-                >Suggest me -></a
+              <a
+                class="block py-2 pr-4 pl-3 text-white rounded"
+                href="./search.html"
+                >Search Here</a
               >
             </li>
           </ul>
@@ -208,6 +196,12 @@
           <div
             class="text__bot flex flex-col justify-evenly h-[25rem] space-y-5 xl:space-y-0 mb-10"
           >
+            <div
+              class="w-24 text-center bg-cardRating py-2 rounded-lg text-rating font-bold"
+            >
+              <i class="far fa-star"></i>
+              <span id="detailRating"></span>
+            </div>
             <div class="bot-type">
               <p class="text-detailSub text-[14px] xl:text-[16px]">Type</p>
               <p
@@ -259,6 +253,7 @@
       let bot_genres = document.getElementById("bot_genres");
       let top_tagline = document.getElementById("top_tagline");
       let top_overview = document.getElementById("top_overview");
+      let detailRating = document.getElementById("detailRating");
       let getId = JSON.parse(localStorage.getItem("dataTrending"));
       // dataId.innerHTML = getId[0].id;
       media_type.innerHTML = getId[0].media_type.toUpperCase();
@@ -306,10 +301,13 @@
 
       function renderDetail(datas) {
         console.log(datas);
+        let rating = Math.round(datas.vote_average * 10) / 10;
+        // console.log(rating);
         detailImg.src = `https://image.tmdb.org/t/p/w500${datas.poster_path}`;
         bot_type.innerHTML = getId[0].media_type.toUpperCase();
         top_tagline.innerHTML = datas.tagline;
         top_overview.innerHTML += datas.overview;
+        detailRating.innerText = rating;
         if (
           datas.release_date == undefined &&
           datas.runtime == undefined &&

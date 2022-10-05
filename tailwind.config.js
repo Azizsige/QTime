@@ -11,6 +11,7 @@ module.exports = {
         input: "#475069",
         tabs: "salmon",
         tabsTitle: "#767E94",
+        cardRating: "rgba(0,0,0,65%)",
         rating: "#FFAD49",
         cardMovies: "rgba(32,40,62,80%)",
         cardRating: "rgba(0,0,0,65%)",
