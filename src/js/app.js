@@ -368,11 +368,11 @@ function getDetailsTrending(type) {
 
 allCont.addEventListener("click", function (el) {
   let target = el.target;
-  let pathname = el.view.window.location.pathname;
-  var dir = pathname.substring(14, pathname.lastIndexOf("/"));
+  let pathname = el.view.window.location.href;
+  let filename = pathname.split("/").pop();
+  console.log(filename);
   // console.log(pathname);
-
-  console.log(typeof dir);
+  // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
   // console.log(target.window);
   storeTranding.unshift({
@@ -383,11 +383,12 @@ allCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    if (dir == "/src") {
+    if (filename == "index.html") {
       window.location = "./pages/detail.html";
-      // alert("yeyyy");
+      alert("yeyyy");
     } else {
-      window.location = "./pages/detail.html";
+      window.location = "./detail.html";
+      alert("Nooo");
     }
   } else {
     return;
@@ -396,10 +397,11 @@ allCont.addEventListener("click", function (el) {
 
 moviesCont.addEventListener("click", function (el) {
   let target = el.target;
-  let pathname = el.view.window.location.pathname;
-  var dir = pathname.substring(14, pathname.lastIndexOf("/"));
-
+  let pathname = el.view.window.location.href;
+  let filename = pathname.split("/").pop();
+  console.log(pathname);
   // console.log(pathname);
+  // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
   // console.log(el.view.window);
   // console.log(target.window);
@@ -411,11 +413,12 @@ moviesCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    if (dir == "/src") {
+    if (filename == "index.html") {
       window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
-      window.location = "./pages/detail.html";
+      window.location = "./detail.html";
+      alert("Nooo");
     }
   } else {
     return;
@@ -425,8 +428,10 @@ moviesCont.addEventListener("click", function (el) {
 tvsCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
-  var dir = pathname.substring(14, pathname.lastIndexOf("/"));
+  let filename = pathname.split("/").pop();
+  console.log(filename);
   // console.log(pathname);
+  // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
   // console.log(el.view.window);
   // console.log(target.window);
@@ -438,11 +443,12 @@ tvsCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    if (dir == "/src") {
+    if (filename == "index.html") {
       window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
       window.location = "./pages/detail.html";
+      // alert("Nooo");
     }
   } else {
     return;
