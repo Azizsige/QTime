@@ -370,7 +370,7 @@ allCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.href;
   let filename = pathname.split("/").pop();
-  console.log(filename);
+  console.log(typeof filename);
   // console.log(pathname);
   // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
@@ -431,7 +431,7 @@ tvsCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
   let filename = pathname.split("/").pop();
-  console.log(filename);
+  console.log(typeof filename);
   // console.log(pathname);
   // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
