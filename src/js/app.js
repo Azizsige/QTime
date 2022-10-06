@@ -389,6 +389,7 @@ allCont.addEventListener("click", function (el) {
     } else {
       window.location = "./detail.html";
       alert("Nooo");
+      console.log(typeof filename);
     }
   } else {
     return;
@@ -419,6 +420,7 @@ moviesCont.addEventListener("click", function (el) {
     } else {
       window.location = "./detail.html";
       alert("Nooo");
+      console.log(typeof filename);
     }
   } else {
     return;
@@ -449,6 +451,7 @@ tvsCont.addEventListener("click", function (el) {
     } else {
       window.location = "./pages/detail.html";
       // alert("Nooo");
+      console.log(typeof filename);
     }
   } else {
     return;
