@@ -387,7 +387,7 @@ allCont.addEventListener("click", function (el) {
       window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
-      window.location = "./detail.html";
+      window.location = "./pages/detail.html";
     }
   } else {
     return;
@@ -415,7 +415,7 @@ moviesCont.addEventListener("click", function (el) {
       window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
-      window.location = "./detail.html";
+      window.location = "./pages/detail.html";
     }
   } else {
     return;
@@ -442,7 +442,7 @@ tvsCont.addEventListener("click", function (el) {
       window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
-      window.location = "./detail.html";
+      window.location = "./pages/detail.html";
     }
   } else {
     return;
