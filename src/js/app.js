@@ -369,9 +369,10 @@ function getDetailsTrending(type) {
 allCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
-  console.log(pathname);
+  var dir = pathname.substring(14, pathname.lastIndexOf("/"));
+  // console.log(pathname);
 
-  // console.log(el.view.window.location.pathname);
+  console.log(typeof dir);
 
   // console.log(target.window);
   storeTranding.unshift({
@@ -382,8 +383,9 @@ allCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    if (pathname == "/src/index.html") {
+    if (dir == "/src") {
       window.location = "./pages/detail.html";
+      // alert("yeyyy");
     } else {
       window.location = "./detail.html";
     }
@@ -395,10 +397,12 @@ allCont.addEventListener("click", function (el) {
 moviesCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
-  console.log(pathname);
+  var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
-  console.log(el.view.window);
-  console.log(target.window);
+  // console.log(pathname);
+
+  // console.log(el.view.window);
+  // console.log(target.window);
   storeTranding.unshift({
     id: target.parentElement.id,
     media_type: target.parentElement.dataset.mediaType,
@@ -407,8 +411,9 @@ moviesCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    if (pathname == "/src/index.html") {
+    if (dir == "/src") {
       window.location = "./pages/detail.html";
+      // alert("yeyyy");
     } else {
       window.location = "./detail.html";
     }
@@ -420,10 +425,11 @@ moviesCont.addEventListener("click", function (el) {
 tvsCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
-  console.log(pathname);
+  var dir = pathname.substring(14, pathname.lastIndexOf("/"));
+  // console.log(pathname);
 
-  console.log(el.view.window);
-  console.log(target.window);
+  // console.log(el.view.window);
+  // console.log(target.window);
   storeTranding.unshift({
     id: target.parentElement.id,
     media_type: target.parentElement.dataset.mediaType,
@@ -432,8 +438,9 @@ tvsCont.addEventListener("click", function (el) {
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
-    if (pathname == "/src/index.html") {
+    if (dir == "/src") {
       window.location = "./pages/detail.html";
+      // alert("yeyyy");
     } else {
       window.location = "./detail.html";
     }
