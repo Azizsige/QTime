@@ -370,7 +370,7 @@ allCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.href;
   let filename = pathname.split("/").pop();
-  console.log(typeof filename);
+  console.log(filename.length);
   // console.log(pathname);
   // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
@@ -389,7 +389,7 @@ allCont.addEventListener("click", function (el) {
     } else {
       window.location = "./detail.html";
       alert("Nooo");
-      console.log(typeof filename);
+      console.log(filename.length);
     }
   } else {
     return;
@@ -420,7 +420,7 @@ moviesCont.addEventListener("click", function (el) {
     } else {
       window.location = "./detail.html";
       alert("Nooo");
-      console.log(typeof filename);
+      console.log(filename.length);
     }
   } else {
     return;
@@ -431,7 +431,7 @@ tvsCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
   let filename = pathname.split("/").pop();
-  console.log(typeof filename);
+  console.log(filename.length);
   // console.log(pathname);
   // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
@@ -451,7 +451,7 @@ tvsCont.addEventListener("click", function (el) {
     } else {
       window.location = "./pages/detail.html";
       // alert("Nooo");
-      console.log(typeof filename);
+      console.log(filename.length);
     }
   } else {
     return;
