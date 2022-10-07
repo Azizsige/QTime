@@ -384,12 +384,10 @@ allCont.addEventListener("click", function (el) {
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (filename.length == 0) {
-      // window.location = "./pages/detail.html";
-      alert("yeyyy");
+      window.location = "./pages/detail.html";
+      // alert("yeyyy");
     } else {
       window.location = "./detail.html";
-      alert("Nooo");
-      console.log(filename.length);
     }
   } else {
     return;
@@ -419,8 +417,6 @@ moviesCont.addEventListener("click", function (el) {
       // alert("yeyyy");
     } else {
       window.location = "./detail.html";
-      alert("Nooo");
-      console.log(filename.length);
     }
   } else {
     return;
@@ -450,8 +446,6 @@ tvsCont.addEventListener("click", function (el) {
       // alert("yeyyy");
     } else {
       window.location = "./pages/detail.html";
-      // alert("Nooo");
-      console.log(filename.length);
     }
   } else {
     return;
