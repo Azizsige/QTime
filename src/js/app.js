@@ -12,6 +12,15 @@ import "owl.carousel/dist/assets/owl.theme.default.min.css";
 import "owl.carousel/dist/owl.carousel.min.js";
 import "owl.carousel";
 import $ from "jquery";
+const loading = document.getElementById("loading");
+
+document.onreadystatechange = () => {
+  console.log(document.readyState);
+  if (document.readyState == "complete") {
+    // alert("Sudah");
+    loading.classList.toggle("hidden");
+  }
+};
 
 let storeTranding = [];
 let storeMovie = [];
