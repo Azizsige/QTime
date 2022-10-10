@@ -158,7 +158,7 @@ async function renderTrending(data) {
     if (datas.original_title == undefined) {
       trending.innerHTML += `
       <div id="${datas.id}" data-media-type="${datas.media_type}"
-      class="movie w-[9rem] shadow-2xl h-full relative z-10 sm:w-[8rem] hover:cursor-pointer sm:h-full lg:w-[13rem] xl:w-[13rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
+      class="movie w-[8rem] shadow-2xl h-full relative z-10 sm:w-[8rem] hover:cursor-pointer sm:h-full lg:w-[13rem] xl:w-[13rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies movies--all bg-cardMovies rounded-xl">
         <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies-image p-2">
@@ -167,7 +167,7 @@ async function renderTrending(data) {
             alt=""
             class="rounded-xl"
           />
-          <div class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold">
+          <div class="px-[0.5rem] xl:px-5 w-auto absolute top-4 xl:top-5 bg-cardRating left-4 xl:left-5 py-1 rounded-lg text-rating font-bold text-[12px] sm:text-base">
           <i class="far fa-star"></i>
           <span>${rating}</span>
           </div>
@@ -183,7 +183,7 @@ async function renderTrending(data) {
     } else if (datas.name == undefined) {
       trending.innerHTML += `
       <div id="${datas.id}" data-media-type="${datas.media_type}"
-      class="movie w-[9rem]  hover:cursor-pointer relative z-10 shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[13rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
+      class="movie w-[8rem]  hover:cursor-pointer relative z-10 shadow-2xl h-full sm:w-[8rem] sm:h-full lg:w-[13rem] xl:w-[13rem] xl:h-full 2xl:w-[19rem] mt-8 sm:mt-12 xl:mt-12 2xl:mt-20"
     >
       <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies movies--all bg-cardMovies rounded-xl">
         <div id="${datas.id}" data-media-type="${datas.media_type}" class="movies-image p-2">
@@ -192,7 +192,7 @@ async function renderTrending(data) {
         alt=""
         class="rounded-xl"
       />
-      <div class="px-5 w-auto absolute top-5 bg-cardRating left-5 py-1 rounded-lg text-rating font-bold">
+      <div class="px-[0.5rem] xl:px-5 w-auto absolute top-4 xl:top-5 bg-cardRating left-4 xl:left-5 py-1 rounded-lg text-rating font-bold text-[12px] sm:text-base">
       <i class="far fa-star"></i>
       <span>${rating}</span>
       </div>
