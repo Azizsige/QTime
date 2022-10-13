@@ -1,11 +1,4 @@
-const API_IMAGE = "https://image.tmdb.org/t/p/w500";
 const API_KEY = "0407909af3830d4ca4556ca68266735f";
-const API_MOVIES_NOW = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
-const API_MOVIES_POPULAR = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
-const API_MOVIES_UPCOMING = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
-const API_TV_POPULAR = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`;
-const API_TV_AIRING = `https://api.themoviedb.org/3/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`;
-const API_TV_TOP = `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.min.css";
@@ -15,9 +8,7 @@ import $ from "jquery";
 const loading = document.getElementById("loading");
 
 document.onreadystatechange = () => {
-  console.log(document.readyState);
   if (document.readyState == "complete") {
-    // alert("Sudah");
     loading.classList.toggle("hidden");
   }
 };
@@ -124,10 +115,10 @@ tabsBtn.forEach((element) => {
 async function getTrending() {
   let all_type = document.getElementById("all_type");
   let loader = document.querySelector(".loader");
-  let API_TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+
   const media_type = ["all", "movie", "tv"];
   let randomMedia = Math.floor(Math.random() * 3);
-  API_TRENDING = `https://api.themoviedb.org/3/trending/${media_type[randomMedia]}/day?api_key=${API_KEY}`;
+
   all_type.innerHTML = media_type[randomMedia].toLocaleUpperCase();
 
   const url = await fetch(API_TRENDING);
@@ -160,7 +151,6 @@ function getMoviesOnAir() {
 async function renderTrending(data) {
   const trending = document.getElementById("trending");
   trending.innerHTML = "";
-  console.log(data);
   const random = Math.floor(Math.random() * (data.length - 1) + 1);
   await data.slice(random, random + 8).forEach((datas) => {
     let rating = Math.round(datas.vote_average * 10) / 10;
@@ -277,8 +267,6 @@ function renderMoviesOnAir() {
   });
 }
 
-// TV
-
 function getTvPopular() {
   return fetch(API_TV_POPULAR)
     .then((response) => response.json())
@@ -329,7 +317,6 @@ function renderTvAiring() {
       tvAiring_id[index].id = data.id;
       tvAiring_id2[index].id = data.id;
       tvAiringRating[index].innerText = rating;
-      console.log(data);
     });
   });
 }
@@ -356,21 +343,14 @@ function renderTvTop() {
       tvTopRated_id[index].id = data.id;
       tvTopRated_id2[index].id = data.id;
       tvTopRating[index].innerText = rating;
-      console.log(data);
     });
   });
 }
 
-// TV
-
 function getDetailsTrending(type) {
-  let API_DETAILS_MOVIE = `https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US`;
   if (type == "all") {
-    API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
   } else if (type == "movie") {
-    API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
   } else {
-    API_DETAILS_MOVIE = `https://api.themoviedb.org/3/${type}/movie_id?api_key=${API_KEY}&language=en-US`;
   }
   return API_DETAILS_MOVIE;
 }
@@ -379,22 +359,16 @@ allCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.href;
   let filename = pathname.split("/").pop();
-  console.log(filename.length);
-  // console.log(pathname);
-  // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
-  // console.log(target.window);
   storeTranding.unshift({
     id: target.parentElement.id,
     media_type: target.parentElement.dataset.mediaType,
   });
-  // console.log(dataId);
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (filename.length == 0 || filename == "index.html") {
       window.location = "./pages/detail.html";
-      // alert("yeyyy");
     } else {
       window.location = "./detail.html";
     }
@@ -407,23 +381,15 @@ moviesCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.href;
   let filename = pathname.split("/").pop();
-  console.log(pathname);
-  // console.log(pathname);
-  // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
-
-  // console.log(el.view.window);
-  // console.log(target.window);
   storeTranding.unshift({
     id: target.parentElement.id,
     media_type: target.parentElement.dataset.mediaType,
   });
-  // console.log(dataId);
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (filename.length == 0 || filename == "index.html") {
       window.location = "./pages/detail.html";
-      // alert("yeyyy");
     } else {
       window.location = "./detail.html";
     }
@@ -436,23 +402,16 @@ tvsCont.addEventListener("click", function (el) {
   let target = el.target;
   let pathname = el.view.window.location.pathname;
   let filename = pathname.split("/").pop();
-  console.log(filename.length);
-  // console.log(pathname);
-  // var dir = pathname.substring(14, pathname.lastIndexOf("/"));
 
-  // console.log(el.view.window);
-  // console.log(target.window);
   storeTranding.unshift({
     id: target.parentElement.id,
     media_type: target.parentElement.dataset.mediaType,
   });
-  // console.log(dataId);
   const dataParse = JSON.stringify(storeTranding);
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (filename.length == 0 || filename == "index.html") {
       window.location = "./pages/detail.html";
-      // alert("yeyyy");
     } else {
       window.location = "./pages/detail.html";
     }
@@ -460,8 +419,6 @@ tvsCont.addEventListener("click", function (el) {
     return;
   }
 });
-
-// localStorage.clear();
 
 getTrending();
 renderMoviesNow();
