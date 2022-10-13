@@ -422,7 +422,7 @@ moviesCont.addEventListener("click", function (el) {
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (filename.length == 0 || filename == "index.html") {
-      // window.location = "./pages/detail.html";
+      window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
       window.location = "./detail.html";
@@ -451,7 +451,7 @@ tvsCont.addEventListener("click", function (el) {
   localStorage.setItem("dataTrending", dataParse);
   if (parseInt(target.parentElement.id) == storeTranding[0].id) {
     if (filename.length == 0 || filename == "index.html") {
-      // window.location = "./pages/detail.html";
+      window.location = "./pages/detail.html";
       // alert("yeyyy");
     } else {
       window.location = "./pages/detail.html";
