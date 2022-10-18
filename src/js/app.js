@@ -1,4 +1,11 @@
+const API_IMAGE = "https://image.tmdb.org/t/p/w500";
 const API_KEY = "0407909af3830d4ca4556ca68266735f";
+const API_MOVIES_NOW = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
+const API_MOVIES_POPULAR = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+const API_MOVIES_UPCOMING = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
+const API_TV_POPULAR = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`;
+const API_TV_AIRING = `https://api.themoviedb.org/3/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`;
+const API_TV_TOP = `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.min.css";
@@ -115,10 +122,10 @@ tabsBtn.forEach((element) => {
 async function getTrending() {
   let all_type = document.getElementById("all_type");
   let loader = document.querySelector(".loader");
-
+  let API_TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
   const media_type = ["all", "movie", "tv"];
   let randomMedia = Math.floor(Math.random() * 3);
-
+  API_TRENDING = `https://api.themoviedb.org/3/trending/${media_type[randomMedia]}/day?api_key=${API_KEY}`;
   all_type.innerHTML = media_type[randomMedia].toLocaleUpperCase();
 
   const url = await fetch(API_TRENDING);
